@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import DndClasses from "./components/dnd-classes";
+import DndSpells from "./components/dnd-spells";
+import Gpt4Generator from "./components/gpt-gen";
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="p-4">
+        <nav className="mb-4">
+          <a href="/classes" className="mr-4">
+            Classes
+          </a>
+          <a href="/spells" className="mr-4">
+            Spells
+          </a>
+          <a href="/gpt4">GPT-4 Generator</a>
+        </nav>
+        <Switch>
+          <Route path="/classes" Component={DndClasses} />
+          <Route path="/spells" Component={DndSpells} />
+          <Route path="/gpt4" Component={Gpt4Generator} />
+        </Switch>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
